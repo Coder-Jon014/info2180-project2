@@ -12,6 +12,28 @@ function test(){
     var newissue = document.getElementById("new-issue-btn")
     var resultdiv = document.getElementById("result")
 
+
+
+    home.addEventListener("click", async function(e){
+        e.target.preventDefault;
+
+        var url = "api.php?page=home"
+
+        await fetch(url)
+            .then(async response =>{
+                if(response.ok){
+                    let page = await response.text()
+                    resultdiv.innerHTML = ""+page;
+                    return;
+                }else{
+                    return Promise.reject("Response was not 200")
+                }
+            })
+            .catch(error => {
+				console.log("An error occured with the connection. Error is : "+ error)
+			})
+    })
+
     adduser.addEventListener("click", async function(e){
         e.target.preventDefault;
 
@@ -52,25 +74,7 @@ function test(){
 			})
     })
 
-    home.addEventListener("click", async function(e){
-        e.target.preventDefault;
-
-        var url = "api.php?page=home"
-
-        await fetch(url)
-            .then(async response =>{
-                if(response.ok){
-                    let page = await response.text()
-                    resultdiv.innerHTML = ""+page;
-                    return;
-                }else{
-                    return Promise.reject("Response was not 200")
-                }
-            })
-            .catch(error => {
-				console.log("An error occured with the connection. Error is : "+ error)
-			})
-    })
+   
 
 
 

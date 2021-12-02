@@ -12,21 +12,20 @@ DROP DATABASE IF EXISTS bugme;
 CREATE DATABASE bugme;
 USE bugme;
 
----
+--
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `date_joined` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4000 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
@@ -44,17 +43,15 @@ UNLOCK TABLES;
 --
 DROP TABLE IF EXISTS `issues`;
 CREATE TABLE `issues` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `title` varchar(255) NOT NULL,
-    `description` text NOT NULL,
-    `type` varchar(255) NOT NULL,
-    `priority` varchar(255) NOT NULL,
-    `status` varchar(255) NOT NULL,
-    `assigned_to` int(11) NOT NULL,
-    `created_by` int(11) NOT NULL,
-    `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    
-    PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM AUTO_INCREMENT=400 DEFAULT CHARSET=utf8;
-)
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`title` varchar(255) NOT NULL,
+`description` text NOT NULL,
+`type` varchar(255) NOT NULL,
+`priority` varchar(255) NOT NULL,
+`status` varchar(255) NOT NULL,
+`assigned_to` int(11) NOT NULL,
+`created_by` int(11) NOT NULL,
+`created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`updated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=400 DEFAULT CHARSET=utf8;

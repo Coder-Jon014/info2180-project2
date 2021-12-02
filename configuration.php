@@ -4,12 +4,12 @@
 header("Access-Control-Allow-Origin: *");
 $pwrd = 'password123';
 
-$db = 'proposals';
+$db = 'bugme';
 
 $host = 'localhost';
 
 $usn = 'admin';
 
 
-$conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $usn, $pwrd);
+$conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $usn, $pwrd);
 ?>
