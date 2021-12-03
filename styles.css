@@ -161,48 +161,62 @@ select {
   cursor: pointer;
 }
 
-#allissue {
-  background-color: white; /* Blue */
+.mainIssues h2{ 
+  padding-left: 70px;
+  font-size: 30px;
+
+}
+
+.issueButton{
+  margin-top: 20px;
   border: none;
-  color: black;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  text-decoration: none;
-  display: inline-block;
+  border-radius: 5px;
+  padding: 10px 0px 10px 0px;
+  width: 200px;
+  background-color: #4c9a2a;
+  color: #ffffff;
+  font-weight: bold;
+  margin-right: 50px;
+  float:right;
+  cursor: pointer;
+
+}
+
+.issueButton:hover{
+  background-color: #196139;
+
+}
+
+.filterbtns {
+  display: flex;
+  flex-direction: row;
+  grid-gap: 10px;
+  padding-left: 50px;
+}
+
+.filterbtns h3{
+  margin-left: 20px;
   font-size: 20px;
-  font-family: "Times New Roman", Times, serif;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
-#openissue {
-  background-color: white;
-  font-family: "Times New Roman", Times, serif;
+#allissue, #openissue, #ticket{
+
+
   border: none;
+  background-color: white;
   color: black;
-  padding: 10px;
+  margin-left: 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  border-radius: 5px;
+  font-size: 15px;
   cursor: pointer;
-}
-
-#ticket {
-  background-color: white;
-  font-family: "Times New Roman", Times, serif;
-  border: none;
-  color: black;
-  padding: 10px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  padding: 10px;
   border-radius: 5px;
-  cursor: pointer;
+}
+#allissue:hover, #openissue:hover, #ticket:hover{
+  background-color: #5091e7;
 }
 
 .filterbtns {
