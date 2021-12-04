@@ -1,7 +1,6 @@
 "use strict";
 
 window.onload = function() {
-
     fetchDashboard();
     sideBar();
 }
@@ -54,6 +53,7 @@ function sideBar(){
                 if(response.ok){
                     let page = await response.text()
                     resultdiv.innerHTML = ""+page;
+                    createIssue();
                     return;
                 }else{
                     return Promise.reject("Response was not 200")
@@ -257,36 +257,34 @@ function colorStatus(){
     }
 }
 
-function addUserFunc(){
-    let fname = document.getElementById('fname');
-    let lname = document.getElementById('lname');
-    let password = document.getElementById('password');
-    let email = document.getElementById('email');
-    let submit = document.getElementById('searchbtn');
-    let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-zA-Z0-9]).{8,}$/;
+function createIssue(){
+    let container = document.getElementById("assignContainer");
 
-    submit.addEventListener('click',function(event){
-        event.preventDefault();
-        
-        let firstname = fname.value;
-        let lastname = lname.value;
-        let pass = password.value;
-        let mail = email.value;
-        var request = new XMLHttpRequest();
-        if(regex.test(pass)){  
-            request.open("GET","api.php?context=newUser&fname=" + firstname + "&lname=" + lastname + "&email=" + mail + "&password=" + pass,true);
-            request.send();
-            request.onreadystatechange = function() {
-                if (request.readyState == 4 && request.status == 200) {
-                    alert("User added.");
-                    fname.value = '';
-                    lname.value = '';
-                    password.value = '';
-                    email.value = '';
-                }
-            }
-        }else{
-            alert("Password must contain one letter, one number, one capital letter and consist of 8 characters");
+    let title = document.getElementById("title");
+    let description = document.getElementById("description");
+    let bugs = document.getElementById("bugstuff");
+    let priority = document.getElementById("prioritystuff");
+    let btn = document.getElementById("searchbtn")
+    let request = new XMLHttpRequest();
+    let assign;
+    request.open('GET',"./issueCreation.php?context=getNames");
+    request.send();
+    request.onreadystatechange = function (){
+        if (request.readyState == 4 && request.status == 200) {
+            container.innerHTML= request.response;
+                assign = document.getElementById("assignstuff");
         }
-    })
+    }
+
+    
+    btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        request.open("GET","./issueCreation.php?context=homeScreen&title="+title.value+"&description="+description.value+"&assigned="+assign.value+"&type="+bugs.value+"&priority="+priority.value,true);
+        request.send()
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200){
+                console.log(request.responseText);
+            }
+        }
+    });
 }
