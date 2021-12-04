@@ -11,18 +11,23 @@ if(isset($_GET['context'],$_SESSION['user'])){
     $usr = "Not set";
 }
 
+$ctext = "NONE";
+
 // checks if user is logged in
 if(isset($_SESSION['user'])){
     //adds new user to sql after data is sanitized 
     if ($context == 'newUser'){
+        echo "Made it inside";
         $firstname = $_GET['fname'];
         $lastname = $_GET['lname'];
-        $paasword = $_GET['password'];
-        $emaill = $_GET['email'];
+        $password = $_GET['password'];
+        $email = $_GET['email'];
+
+        var_dump($_GET['fname']);
         
-        if(filter_var($firstname,FILTER_SANITIZE_STRING) !=false || filter_var($lastname,FILTER_SANITIZE_STRING) != false || filter_var($eml,FILTER_SANITIZE_EMAIL) != false || filter_var($pswrd,FILTER_SANITIZE_STRING) != false){
-        $Email = filter_var($eml,FILTER_SANITIZE_EMAIL);
-        $Pwrds = filter_var($pswrd,FILTER_SANITIZE_STRING);
+        if(filter_var($firstname,FILTER_SANITIZE_STRING) !=false || filter_var($lastname,FILTER_SANITIZE_STRING) != false || filter_var($email,FILTER_SANITIZE_EMAIL) != false || filter_var($password,FILTER_SANITIZE_STRING) != false){
+        $Email = filter_var($email,FILTER_SANITIZE_EMAIL);
+        $Pwrds = filter_var($password,FILTER_SANITIZE_STRING);
         $Pwrds = password_hash($Pwrds,PASSWORD_DEFAULT);
         $FName = filter_var($firstname,FILTER_SANITIZE_STRING);
         $LName = filter_var($lastname,FILTER_SANITIZE_STRING);
@@ -32,7 +37,7 @@ if(isset($_SESSION['user'])){
         echo("User Entered");
         // something goes wrong with date entered by user
         }else{
-            echo("An error has occured");
+            echo("An error has occured: line 38");
         }
     }
     // adds new issue to table after data is sanitized 
