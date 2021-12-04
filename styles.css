@@ -358,5 +358,37 @@ th {
 }
 
 #result-div {
+  /* border: 2px solid green; */
+  overflow-y: auto;
+}
+
+.open {
+  /* background-color: #000000; */
   border: 2px solid green;
+  padding: 2px;
+  color: white;
+  /* font-weight: bold; */
+  background-color: green;
+}
+
+.closed {
+  /* background-color: #000000; */
+  border: 2px solid orangered;
+  padding: 2px;
+  color: white;
+  /* font-weight: bold; */
+  background-color: orangered;
+}
+
+.in-progress {
+  /* background-color: #000000; */
+  border: 2px solid yellow;
+  padding: 2px;
+  color: black;
+  /* font-weight: bold; */
+  background-color: yellow;
+}
+
+.clicked {
+  background-color: #5091e7;
 }

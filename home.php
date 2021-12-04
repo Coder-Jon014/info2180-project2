@@ -17,7 +17,7 @@
     
     <!--Main Content-->
         <div class = mainIssues id="result-div">
-          <h2>Issues</h2><a href="Issuemaker.html"><button type="issue" id="issue" class="issueButton"> Create New Issue </button></a>           
+          <h2>Issues</h2><a href="#"><button type="issue" id="issue" class="issueButton"> Create New Issue </button></a>           
             <br>
             <div class = "filterbtns">
             <h3>Filter By: </h3> 
@@ -36,15 +36,18 @@
                 if(isset($_GET['filter'])){
                     if($_GET['filter'] == "open"){
                         $stmt= $conn->query("SELECT * FROM `issues` WHERE status='open'");
-                    }elseif($_GET['filter'] == "my-ticket"){
+                    }else if($_GET['filter'] == "my-ticket"){
                         session_start();
-                        $username = $_SESSION['user'];
-                        var_dump($username);
-                        $stmt= $conn->query("SELECT * FROM `issues` WHERE assigned_to='$username' ");
+                        $username = (string)$_SESSION['user'];
+                        $stmt= $conn->query("SELECT * FROM `issues` WHERE assigned_to='$username'");
+                        // var_dump($username);
+                        
                     }
                 }
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+                //Testing data in variables
+                // var_dump($stmt);
+                // var_dump($results);
 
             ?>
             <table>
@@ -55,12 +58,12 @@
                     <th>Assigned To</th>
                     <th>Created</th>
                 </thead>
-                <tbody>
+                <tbody id="ISSUES-TABLE">
                     <?php foreach($results as $row):?>
                     <tr>
-                        <td><?="#".$row['id']." ".$row['title'];?></td>
+                        <td><?="#".$row['id']." "?><a href="#" id="detail-issue"><?="".$row['title'];?></a></td>
                         <td><?=$row['type'];?></td>
-                        <td><?=$row['status'];?></td>
+                        <td class="status-row"><p><?=$row['status'];?></p></td>
                         <td><?=$row['assigned_to'];?></td>
                         <td><?=$row['created'];?></td>
                     </tr>
