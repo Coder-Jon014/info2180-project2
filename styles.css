@@ -338,3 +338,20 @@ th {
   border: 0;
   text-align: center;
 }
+
+/* USER CREATION SECTION */
+.Creation{
+  margin-left: 20px;
+}
+
+.Creation #fname, #lname, #password, #email{
+  padding: 10px;
+  margin-top: 2px;
+  border-radius: 5px;
+  background-color: rgb(197, 193, 193);
+  
+}
+.Creation #searchbtn{
+  padding-left: 25px;
+  padding-right: 25px;
+}
