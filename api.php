@@ -4,21 +4,21 @@ include('configuration.php');
 include('loginfile.php');
 if(isset($_GET['context'],$_SESSION['user'])){
     
-    $ctext = $_GET['context'];
+    $context = $_GET['context'];
     $usr = (int)$_SESSION['user'];
 }else{
-    $ctext = "Not set";
+    $context = "Not set";
     $usr = "Not set";
 }
 
 // checks if user is logged in
 if(isset($_SESSION['user'])){
     //adds new user to sql after data is sanitized 
-    if ($ctext == 'newUser'){
+    if ($context == 'newUser'){
         $firstname = $_GET['fname'];
         $lastname = $_GET['lname'];
-        $pswrd = $_GET['password'];
-        $eml = $_GET['email'];
+        $paasword = $_GET['password'];
+        $emaill = $_GET['email'];
         
         if(filter_var($firstname,FILTER_SANITIZE_STRING) !=false || filter_var($lastname,FILTER_SANITIZE_STRING) != false || filter_var($eml,FILTER_SANITIZE_EMAIL) != false || filter_var($pswrd,FILTER_SANITIZE_STRING) != false){
         $Email = filter_var($eml,FILTER_SANITIZE_EMAIL);
