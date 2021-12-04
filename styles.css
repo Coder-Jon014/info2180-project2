@@ -161,13 +161,12 @@ select {
   cursor: pointer;
 }
 
-.mainIssues h2{ 
+.mainIssues h2 {
   padding-left: 70px;
   font-size: 30px;
-
 }
 
-.issueButton{
+.issueButton {
   margin-top: 20px;
   border: none;
   border-radius: 5px;
@@ -177,14 +176,12 @@ select {
   color: #ffffff;
   font-weight: bold;
   margin-right: 50px;
-  float:right;
+  float: right;
   cursor: pointer;
-
 }
 
-.issueButton:hover{
+.issueButton:hover {
   background-color: #196139;
-
 }
 
 .filterbtns {
@@ -194,14 +191,14 @@ select {
   padding-left: 50px;
 }
 
-.filterbtns h3{
+.filterbtns h3 {
   margin-left: 20px;
   font-size: 20px;
 }
 
-#all, #openI, #ticket{
-
-
+#all,
+#openI,
+#ticket {
   border: none;
   background-color: white;
   color: black;
@@ -215,7 +212,9 @@ select {
   padding: 10px;
   border-radius: 5px;
 }
-#all:hover, #openI:hover, #ticket:hover{
+#all:hover,
+#openI:hover,
+#ticket:hover {
   background-color: #5091e7;
 }
 
@@ -340,18 +339,24 @@ th {
 }
 
 /* USER CREATION SECTION */
-.Creation{
+.Creation {
   margin-left: 20px;
 }
 
-.Creation #fname, #lname, #password, #email{
+.Creation #fname,
+#lname,
+#password,
+#email {
   padding: 10px;
   margin-top: 2px;
   border-radius: 5px;
   background-color: rgb(197, 193, 193);
-  
 }
-.Creation #searchbtn{
+.Creation #searchbtn {
   padding-left: 25px;
   padding-right: 25px;
+}
+
+#result-div {
+  border: 2px solid green;
 }
