@@ -13,12 +13,11 @@ window.onload = function(){
         let pass = password.value;
         let mail = email.value;
         var request = new XMLHttpRequest();
-        if(regex.test(pass)){
-            request.open("GET","http://localhost/info2180-project/api.php?context=Creation&fname=" + firstname + "&lname=" + lastname + "&email=" + mail + "&password=" + pass,true);
+        if(regex.test(pass)){  
+            request.open("POST","api.php?context=userCreation&fname=" + firstname + "&lname=" + lastname + "&email=" + mail + "&password=" + pass,true);
             request.send();
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
-                    console.log(Done);
                     alert("User added.");
                     fname.value = '';
                     lname.value = '';
