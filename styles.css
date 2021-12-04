@@ -199,7 +199,7 @@ select {
   font-size: 20px;
 }
 
-#allissue, #openissue, #ticket{
+#all, #openI, #ticket{
 
 
   border: none;
@@ -215,7 +215,7 @@ select {
   padding: 10px;
   border-radius: 5px;
 }
-#allissue:hover, #openissue:hover, #ticket:hover{
+#all:hover, #openI:hover, #ticket:hover{
   background-color: #5091e7;
 }
 
