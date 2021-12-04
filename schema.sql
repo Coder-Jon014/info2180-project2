@@ -49,8 +49,8 @@ CREATE TABLE `issues` (
 `type` varchar(255) NOT NULL,
 `priority` varchar(255) NOT NULL,
 `status` varchar(255) NOT NULL,
-`assigned_to` varchar(255) NOT NULL,
-`created_by` varchar(255) NOT NULL,
+`assigned_to` text NOT NULL,
+`created_by` text NOT NULL,
 `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 `updated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`)
