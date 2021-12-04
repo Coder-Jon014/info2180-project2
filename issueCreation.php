@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css"/>
     <script src="issueCreation.js" type="text/Javascript"></script>
-
     <title>Document</title>
 </head>
 <body>

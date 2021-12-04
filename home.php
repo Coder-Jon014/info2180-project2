@@ -27,6 +27,32 @@
         </div>
         <div id = "result">
           <!--Table will be appear here-->
+          <?php
+          include "configuration.php";
+          
+          
+          $stmt= $conn->query("SELECT * FROM `issues`");
+          $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          
+          ?>
+          <table>
+              <thead>
+                  <th>Title</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Assigned To</th>
+                  <th>Created</th>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </tbody>
+          </table>
         </div>
     </div>
   </body>

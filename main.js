@@ -1,11 +1,11 @@
 "use strict";
 
 window.onload = function() {
-    test();
+    sideBar();
 }
 
 
-function test(){
+function sideBar(){
 
     var home = document.getElementById("home-btn")
     var adduser = document.getElementById("add-user-btn")
