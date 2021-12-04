@@ -9,51 +9,65 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script src="home.js" type="text/Javascript"></script>
+    <!-- <script src="home.js" type="text/Javascript"></script> -->
   </head>
 
   <body>
 
     
     <!--Main Content-->
-        <div class = mainIssues>
+        <div class = mainIssues id="result-div">
           <h2>Issues</h2><a href="Issuemaker.html"><button type="issue" id="issue" class="issueButton"> Create New Issue </button></a>           
-        </div><br>
-        <div class = "filterbtns">
-          <h3>Filter By: </h3> 
-          <button type="all" id="all">ALL</button>
-          <button type="openI" id="openI">OPEN</button>
-          <button type="ticket" id="ticket">MY TICKETS</button>
+            <br>
+            <div class = "filterbtns">
+            <h3>Filter By: </h3> 
+            <button type="all" id="all">ALL</button>
+            <button type="openI" id="openI">OPEN</button>
+            <button type="ticket" id="ticket">MY TICKETS</button>
+            </div>
+            <div id="result">
+            <!--Table will be appear here-->
+            <?php
+                include "configuration.php";
+                
+                
+                $stmt= $conn->query("SELECT * FROM `issues`");
+
+                if(isset($_GET['filter'])){
+                    if($_GET['filter'] == "open"){
+                        $stmt= $conn->query("SELECT * FROM `issues` WHERE status='open'");
+                    }elseif($_GET['filter'] == "my-ticket"){
+                        session_start();
+                        $username = $_SESSION['user'];
+                        var_dump($username);
+                        $stmt= $conn->query("SELECT * FROM `issues` WHERE assigned_to='$username' ");
+                    }
+                }
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+            ?>
+            <table>
+                <thead>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Created</th>
+                </thead>
+                <tbody>
+                    <?php foreach($results as $row):?>
+                    <tr>
+                        <td><?="#".$row['id']." ".$row['title'];?></td>
+                        <td><?=$row['type'];?></td>
+                        <td><?=$row['status'];?></td>
+                        <td><?=$row['assigned_to'];?></td>
+                        <td><?=$row['created'];?></td>
+                    </tr>
+                    <?php endforeach;?>
+                </tbody>
+            </table>
+            </div>
         </div>
-        <div id = "result">
-          <!--Table will be appear here-->
-          <?php
-          include "configuration.php";
-          
-          
-          $stmt= $conn->query("SELECT * FROM `issues`");
-          $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          
-          ?>
-          <table>
-              <thead>
-                  <th>Title</th>
-                  <th>Type</th>
-                  <th>Status</th>
-                  <th>Assigned To</th>
-                  <th>Created</th>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                  </tr>
-              </tbody>
-          </table>
-        </div>
-    </div>
   </body>
 </html>
