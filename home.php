@@ -38,9 +38,12 @@
                         $stmt= $conn->query("SELECT * FROM `issues` WHERE status='open'");
                     }else if($_GET['filter'] == "my-ticket"){
                         session_start();
-                        $username = (string)$_SESSION['user'];
-                        $stmt= $conn->query("SELECT * FROM `issues` WHERE assigned_to='$username'");
-                        // var_dump($username);
+                        if(isset($_SESSION['user'])){
+                            $username = (string)$_SESSION['user'];
+                            $stmt= $conn->query("SELECT * FROM `issues` WHERE assigned_to='$username'");
+                            // var_dump($username);
+                        }
+                        
                         
                     }
                 }
