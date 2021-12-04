@@ -12,8 +12,7 @@
     <div class= "Creation">
         <h2>New User</h2>
     
-    
-        <form>
+        <form action="api.php" method="POST">
             <label for="fname">First name</label><br>
             <input type="text" id="fname" name="fname" placeholder="First name">
             <br><br>
