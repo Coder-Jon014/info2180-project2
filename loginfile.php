@@ -20,7 +20,7 @@ if(isset($_POST['email'], $_POST['pass'])){
 
             $_SESSION['user'] = $row['firstname'];
             echo('redirect');
-            header("Location: ./homeScreen.html");
+            header("Location: homeScreen.php");
             exit();
         }else{
             echo('Password Incorrect');
