@@ -12,7 +12,11 @@
     <div class= "Creation">
         <h2>New User</h2>
     
+<<<<<<< HEAD
         <!-- <form action="api.php" method="POST"> -->
+=======
+    
+>>>>>>> issuemaker
         <form>
             <label for="fname">First name</label><br>
             <input type="text" id="fname" name="fname" placeholder="First name">

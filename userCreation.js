@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 window.onload = function(){
     let fname = document.getElementById('fname');
     let lname = document.getElementById('lname');
@@ -30,3 +31,5 @@ window.onload = function(){
         }
     })
 }
+=======
+>>>>>>> issuemaker
