@@ -369,6 +369,7 @@ th {
   color: white;
   /* font-weight: bold; */
   background-color: green;
+  border-radius: 10%;
 }
 
 .closed {
@@ -378,6 +379,7 @@ th {
   color: white;
   /* font-weight: bold; */
   background-color: orangered;
+  border-radius: 10%;
 }
 
 .in-progress {
@@ -387,6 +389,7 @@ th {
   color: black;
   /* font-weight: bold; */
   background-color: yellow;
+  border-radius: 10%;
 }
 
 .clicked {
