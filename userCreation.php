@@ -12,7 +12,8 @@
     <div class= "Creation">
         <h2>New User</h2>
     
-        <form action="api.php" method="POST">
+    
+        <form>
             <label for="fname">First name</label><br>
             <input type="text" id="fname" name="fname" placeholder="First name">
             <br><br>

@@ -358,5 +358,40 @@ th {
 }
 
 #result-div {
+  /* border: 2px solid green; */
+  overflow-y: auto;
+}
+
+.open {
+  /* background-color: #000000; */
   border: 2px solid green;
+  padding: 2px;
+  color: white;
+  /* font-weight: bold; */
+  background-color: green;
+  border-radius: 10%;
+}
+
+.closed {
+  /* background-color: #000000; */
+  border: 2px solid orangered;
+  padding: 2px;
+  color: white;
+  /* font-weight: bold; */
+  background-color: orangered;
+  border-radius: 10%;
+}
+
+.in-progress {
+  /* background-color: #000000; */
+  border: 2px solid yellow;
+  padding: 2px;
+  color: black;
+  /* font-weight: bold; */
+  background-color: yellow;
+  border-radius: 10%;
+}
+
+.clicked {
+  background-color: #5091e7;
 }
