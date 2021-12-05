@@ -5,14 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css"/>
-    <script src="userCreation.js" type="text/Javascript"></script>
+    <!-- <script src="userCreation.js" type="text/Javascript"></script> -->
     <title>Document</title>
 </head>
 <body>
     <div class= "Creation">
         <h2>New User</h2>
     
-        <form action="api.php" method="POST">
+        <!-- <form action="api.php" method="POST"> -->
+        <!-- <form method="post"> -->
             <label for="fname">First name</label><br>
             <input type="text" id="fname" name="fname" placeholder="First name">
             <br><br>
@@ -30,7 +31,7 @@
             
             <button type="submit" id="searchbtn">Submit</button>
         
-          </form>
+          <!-- </form> -->
     </div>    
 </body>
 </html>

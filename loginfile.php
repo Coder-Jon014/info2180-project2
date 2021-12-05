@@ -18,18 +18,19 @@ if(isset($_POST['email'], $_POST['pass'])){
         $row = $res[0];
         if(password_verify($pwrd,$row['password'])){
 
-            $_SESSION['user'] = $row['firstname'];
+            $usr = $row['firstname']." ".$row['lastname'];
+            $_SESSION['user'] = $usr;
             echo('redirect');
-            header("Location: homeScreen.php");
+            header("Location: ./homeScreen.php");
             exit();
         }else{
             echo('Password Incorrect');
-            header("Location: ./LoginInterface/loginInterface.html");
+            header("Location: ./loginInterface.php");
             exit();
         }
     }else{
         echo('Username Incorrect');
-        header("Location: ./LoginInterface/loginInterface.html");
+        header("Location: ./loginInterface.php");
         exit();
     }
 

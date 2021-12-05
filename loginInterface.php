@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="login">
-      <form action="../loginfile.php" method="post">
+      <form action="./loginfile.php" method="post">
         <label for="email">Email</label>
         <input type="text" name="email" id="email" required />
         <label for="pass">Password</label>

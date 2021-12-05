@@ -44,7 +44,7 @@
     <!--Main Content-->
 
      <div class= "main-content" id="result-div">
-        <div class = mainIssues>
+        <!-- <div class = mainIssues>
           <h2>Issues</h2><a href="Issuemaker.html"><button type="issue" id="issue" class="issueButton"> Create New Issue </button></a>           
         </div>
         <br>
@@ -54,17 +54,17 @@
           <button type="openI" id="openI">OPEN</button>
           <button type="ticket" id="ticket">MY TICKETS</button>
         </div>
-        <div id = "result">
+        <div id = "result"> -->
           <!--Table will be appear here-->
           <?php
-          include "configuration.php";
+          // include "configuration.php";
 
 
-          $stmt= $conn->query("SELECT * FROM `issues`");
-          $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          // $stmt= $conn->query("SELECT * FROM `issues`");
+          // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
           ?>
-          <table>
+          <!-- <table>
               <thead>
                   <th>Title</th>
                   <th>Type</th>
@@ -72,19 +72,11 @@
                   <th>Assigned To</th>
                   <th>Created</th>
               </thead>
-              <tbody>
-                  <?php foreach($results as $row):?>
-                  <tr>
-                    <td><?="#".$row['id']." ".$row['title'];?></td>
-                    <td><?=$row['type'];?></td>
-                    <td><?=$row['status'];?></td>
-                    <td><?=$row['assigned_to'];?></td>
-                    <td><?=$row['created'];?></td>
-                  </tr>
-                  <?php endforeach;?>
-              </tbody>
+              <tbody> -->
+                  
+              <!-- </tbody>
           </table>
-        </div>
+        </div> -->
       </div>
   </body>
 </html>
