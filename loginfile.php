@@ -25,12 +25,12 @@ if(isset($_POST['email'], $_POST['pass'])){
             exit();
         }else{
             echo('Password Incorrect');
-            header("Location: ./LoginInterface/loginInterface.html");
+            header("Location: ./loginInterface.html");
             exit();
         }
     }else{
         echo('Username Incorrect');
-        header("Location: ./LoginInterface/loginInterface.html");
+        header("Location: ./loginInterface.html");
         exit();
     }
 

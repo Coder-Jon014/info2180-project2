@@ -1,6 +1,7 @@
 "use strict";
 
 window.onload = function() {
+
     fetchDashboard();
     sideBar();
 }
@@ -46,13 +47,13 @@ function sideBar(){
     newissue.addEventListener("click", async function(e){
         e.target.preventDefault;
 
-        var url = "issueCreation.php?"
+        var url = "issueCreation.php?context=getNames"
 
         await fetch(url)
             .then(async response =>{
                 if(response.ok){
                     let page = await response.text()
-                    resultdiv.innerHTML = ""+page;
+                    resultdiv.innerHTML = " "+page;
                     createIssue();
                     return;
                 }else{
@@ -68,13 +69,25 @@ function sideBar(){
     // should be changed to reflect session destroyed and returned login screen
 
     var logout = document.getElementById("logout-btn")
-    var page = document.getElementsByTagName("BODY")
 
-    logout.addEventListener("click", function(e){
-        e.target.preventDefault;
+    logout.addEventListener("click", async function(e){
+        e.preventDefault();
 
-        page[0].innerHTML = "<p>You have been logged out successfully</p>";
-        alert("You have been logged out successfully");
+        var url = "logoutfile.php"
+        await fetch(url)
+            .then(async response=>{
+                if(response.ok){
+                    alert("You have been logged out successfully");
+                    return
+                }else{
+                    console.log("Response was not 200")
+                    return
+                }
+            })
+
+            .catch(error=>{
+                console.log("There was an error : "+error)
+            })
     })
 }
 
@@ -108,6 +121,7 @@ function filters(){
                     filters()
                     newIssueDashboard()
                     colorStatus()
+                    bugDetails()
                     // allFilter.classList.add("clicked")
                     // openFilter.classList.remove("clicked")
                     // ticketFilter.classList.remove("clicked")
@@ -140,6 +154,7 @@ function filters(){
                     filters()
                     newIssueDashboard()
                     colorStatus()
+                    bugDetails()
 
                     // allFilter.classList.remove("clicked")
                     // openFilter.classList.add("clicked")
@@ -171,6 +186,7 @@ function filters(){
                     filters()
                     newIssueDashboard()
                     colorStatus()
+                    bugDetails()
 
 
                     // allFilter.classList.remove("clicked")
@@ -232,6 +248,7 @@ async function fetchDashboard(){
     filters();
     newIssueDashboard();
     colorStatus();
+    bugDetails();
     
 }
 
@@ -257,6 +274,40 @@ function colorStatus(){
     }
 }
 
+function addUserFunc(){
+    let fname = document.getElementById('fname');
+    let lname = document.getElementById('lname');
+    let password = document.getElementById('password');
+    let email = document.getElementById('email');
+    let submit = document.getElementById('searchbtn');
+    let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-zA-Z0-9]).{8,}$/;
+
+    submit.addEventListener('click',function(event){
+        event.preventDefault();
+        
+        let firstname = fname.value;
+        let lastname = lname.value;
+        let pass = password.value;
+        let mail = email.value;
+        var request = new XMLHttpRequest();
+        if(regex.test(pass)){  
+            request.open("GET","api.php?context=newUser&fname=" + firstname + "&lname=" + lastname + "&email=" + mail + "&password=" + pass,true);
+            request.send();
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    alert("User added.");
+                    fname.value = '';
+                    lname.value = '';
+                    password.value = '';
+                    email.value = '';
+                }
+            }
+        }else{
+            alert("Password must contain one letter, one number, one capital letter and consist of 8 characters");
+        }
+    })
+}
+
 function createIssue(){
     let container = document.getElementById("assignContainer");
 
@@ -266,25 +317,123 @@ function createIssue(){
     let priority = document.getElementById("prioritystuff");
     let btn = document.getElementById("searchbtn")
     let request = new XMLHttpRequest();
-    let assign;
-    request.open('GET',"./issueCreation.php?context=getNames");
-    request.send();
-    request.onreadystatechange = function (){
-        if (request.readyState == 4 && request.status == 200) {
-            container.innerHTML= request.response;
-                assign = document.getElementById("assignstuff");
-        }
-    }
+    let assign = document.getElementById("assignstuff");
+
+    // request.open('GET',"./issueCreation.php?context=getNames");
+    // request.send();
+    // request.onreadystatechange = function (){
+    //     if (request.readyState == 4 && request.status == 200) {
+    //         container.innerHTML= ""+request.response;
+    //     }
+    // }
 
     
     btn.addEventListener("click", function(e) {
         e.preventDefault();
-        request.open("GET","./issueCreation.php?context=homeScreen&title="+title.value+"&description="+description.value+"&assigned="+assign.value+"&type="+bugs.value+"&priority="+priority.value,true);
+        request.open("GET","./issueCreation.php?context=newIssue&title="+title.value+"&description="+description.value+"&assigned="+assign.value+"&type="+bugs.value+"&priority="+priority.value,true);
         request.send()
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200){
-                console.log(request.responseText);
+                alert("New Issue Created")
             }
         }
     });
+}
+
+var superTitle = "Not Set"
+
+
+// This function is to give the links inside the table at home issues table an event listener so that they
+// can fetch the details of an issue and display them on a screen
+function bugDetails(){
+
+    var bugdetails = document.getElementsByClassName("detail-issue")
+    var bugdetailscount = document.getElementsByClassName("detail-issue").length
+    // Testing output
+    // console.log(bugdetailscount)
+    // console.log(bugdetails)
+
+
+    for(let x=0; x < bugdetailscount; x++){
+
+        bugdetails[x].addEventListener("click", async function(e){
+            e.preventDefault();
+            var title = bugdetails[x].firstChild.textContent
+    
+            var url = "./bugfile.php?query="+title
+    
+            await fetch(url)
+            .then(async response=>{
+                if(response.ok){
+                    let data = await response.text()
+                    var result = document.getElementById("result-div")
+                    result.innerHTML = ""+data;
+                    superTitle = title
+                    markedAs()
+    
+    
+                    // Testing
+                    // console.log("Table should update : FetchDashboard Function")
+                    return
+                }else{
+                    console.log("The response was not ok: code !200")
+                    return
+                }
+            })
+            .catch(error=>{
+                console.log("An error occured : "+error)
+                return
+            })
+    
+    
+        })
+    }
+
+}
+
+function markedAs(){
+    var closed = document.getElementById("markclosed")
+    var progress = document.getElementById("markinprog")
+
+    // testing output
+    // console.log(closed)
+    // console.log(progress)
+
+    closed.addEventListener("click", async function(e){
+        e.preventDefault();
+
+        var url = "./bugFile.php?update=closed&search="+superTitle
+
+        await fetch(url)
+            .then(async response=>{
+                if(response.ok){
+                    alert("Issue updated status to closed")
+                    return
+                }else{
+                    console.log("Response was not 200")
+                }
+            })
+            .catch(error=>{
+                console.log("There was error : "+error)
+            })
+    })
+
+    progress.addEventListener("click", async function(e){
+        e.preventDefault();
+
+        var url = "./bugFile.php?update=progress&search="+superTitle
+
+        await fetch(url)
+            .then(async response=>{
+                if(response.ok){
+                    alert("Issue updated status to in progress")
+                    return
+                }else{
+                    console.log("Response was not 200")
+                }
+            })
+            .catch(error=>{
+                console.log("There was error : "+error)
+            })
+    })
 }

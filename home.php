@@ -64,7 +64,7 @@
                 <tbody id="ISSUES-TABLE">
                     <?php foreach($results as $row):?>
                     <tr>
-                        <td><?="#".$row['id']." "?><a href="#" id="detail-issue"><?="".$row['title'];?></a></td>
+                        <td><?="#".$row['id']." "?><a href="#" class="detail-issue"><?="".$row['title'];?></a></td>
                         <td><?=$row['type'];?></td>
                         <td class="status-row"><p><?=$row['status'];?></p></td>
                         <td><?=$row['assigned_to'];?></td>
